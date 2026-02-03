@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      class="main1 container-fluid min-vh-100 d-flex justify-content-center align-items-center bg-light br"
+    >
+      <div class="row w-100 d-flex justify-content-center align-items-center">
+        <div class="col-6 justify-content-center p-4 shadow-lg rounded-4">
+          <form (ngSubmit)="onLogin()" [formGroup]="form">
+            <span class="heading d-flex justify-content-center fw-bold mb-3 fs-3">Login</span>
+            <div class="input-group d-flex align-items-center">
+              <span class="bi bi-person-fill"></span>
+              <input
+                type="text"
+                 formControlName="email"
+                id="email"              
+                placeholder="Email"
+                class="form-control rounded-start-2 shadow-none"
+              />
+              
+            </div>
+            <br />
+            <div class="input-group d-flex align-items-center">
+              <span class="bi bi-lock-fill"></span>
+              <input
+        
+                type="password"
+                formControlName="password"
+                id="password"
+                placeholder="Password"
+                class="form-control rounded-start-2 shadow-none"
+              />
+               @if (
+                form.controls['password'].errors?.['required'] &&
+                form.controls['password'].touched
+              ) {
+                <span>*</span>
+              }
+            </div>
+            <br /><br />
+
+            <button class="btn btn-primary fw-bold w-100" type="submit ">
+              LOGIN
+            </button>
+
+            <br /><br />
+            <a href="#" (click)="forgotPassword()">ForgotPassword</a>
+            <br /><br />
+            <p class="text-center mt-3 mb-0">
+              Don't have a account
+              <a href="" (click)="goToSignup()">Register</a>
+             
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

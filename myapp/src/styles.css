@@ -1,0 +1,22 @@
+/* Full height layout */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Sidebar full height */
+#sidebar {
+  min-height: 100vh;
+}
+
+/* Header adjustments */
+.navbar .dropdown {
+  width: auto !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .col-md-3 {
+    display: none !important; /* Hide sidebar on mobile */
+  }
+}

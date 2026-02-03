@@ -1,0 +1,6 @@
+.bg-image {
+  background: url('../../../assets/hex000.png')center/cover no-repeat  fixed;
+min-height: 100vh;
+width: 100%;
+  display: flex;
+}

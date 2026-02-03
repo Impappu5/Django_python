@@ -1,0 +1,24 @@
+
+<div class="container-fluid table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-dark text-center">
+        <h3 class="heading">User Profile</h3>
+        <tr>
+          <th>User_ID</th>
+          <th>User-Name</th>
+          <th>User-Email</th>
+        </tr>
+      </thead>
+
+      <tbody class="text-center">
+        <tr *ngIf="user$ | async as user">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+

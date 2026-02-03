@@ -1,0 +1,26 @@
+
+<nav class="navbar text-white shadow-sm pe-2">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white ps-3" href="#"><span class="bi bi-house"></span></a>
+
+    <div class="d-flex align-items-center ms-auto">
+      <!-- Profile Dropdown -->
+      <div class="dropdown w-100">
+        <a
+          class="d-flex align-items-center text-white dropdown-toggle w-75"
+          href="#"
+          id="profile"
+          data-bs-toggle="dropdown"
+        >
+          <i class="bi bi-person-circle fs-4"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+          <li><a href="/profile" class="dropdown-item">Profile</a></li>
+          <li><button (click)="logout()" class="dropdown-item">Logout</button></li>
+
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

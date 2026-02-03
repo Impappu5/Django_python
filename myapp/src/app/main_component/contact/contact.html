@@ -1,0 +1,97 @@
+
+  <div class="container m-3">
+    <div class="row justify-content-center ">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="card shadow p-3">
+          <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+            <div class="mb-3">
+              <label for="fname" class="form-label p-1"> First name </label>
+              <input
+                formControlName="fname"
+                type="text"
+                placeholder="First name"
+                class="form-control"
+                id="fname"
+              />
+              <div class="text-danger">
+                @if (contactForm.controls['fname']?.errors?.['required'] && contactForm.controls['fname'].touched) {
+                <span>First name is required</span>
+                }
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="lname" class="form-label p-1"> Last name </label>
+              <input
+                formControlName="lname"
+                id="lname"
+                type="text"
+                placeholder="Last name"
+                class="form-control"
+              />
+              <div class="text-danger">
+                @if(contactForm.controls['lname'].errors?.['required'] && contactForm.controls['lname'].touched){
+                  <span>This is required</span>
+                }
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label p-1">Email</label>
+              <input
+                formControlName="email"
+                id="email"
+                type="email"
+                placeholder="exapmle@gmail.com"
+                class="form-control"
+              />
+               <div class="text-danger">
+                @if(contactForm.controls['email'].errors?.['required'] && contactForm.controls['email'].touched){
+                  <span>Email is required</span>
+                }
+                @if(contactForm.controls['email'].errors?.['email']){
+                  <span>Please, enter valid email</span>
+                }
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label p-1">Phone Number</label>
+              <input
+                type="tel"
+                formControlName="phone"
+                id="phone"
+                placeholder="Phone number"
+                class="form-control"
+              />
+               <div class="text-danger">
+                @if(contactForm.controls['phone'].errors?.['required'] && contactForm.controls['phone'].touched){
+                  <span>Phone number is required</span>
+                }
+                 @if(contactForm.controls['phone'].errors?.['pattern'] ){
+                  <span>Please, Enter 10 digit Mobile number</span>
+                }
+                
+               
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="feedback" class="form-label p-1">Feedback</label>
+              <textarea formControlName="feedback" id="feedback" class="form-control"> </textarea>
+               <div class="text-danger">
+                @if(contactForm.controls['feedback'].errors?.['required'] && contactForm.controls['feedback'].touched){
+                  <span>This is required</span>
+                }
+              </div>
+            </div>
+            <button
+              class="btn btn-primary form-control"
+              [disabled]="!contactForm.valid"
+              type="Submit"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
