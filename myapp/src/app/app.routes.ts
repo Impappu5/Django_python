@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { mapToCanActivate, Routes } from '@angular/router';
 // import { Login } from './login/login';
 import { Signup } from './main_component/signup/signup';
 import { Home } from './shared_component/home/home';
@@ -10,6 +10,7 @@ import { Sidebar } from './shared_component/sidebar/sidebar';
 import { Layout } from './main_component/layout/layout';
 import { Main } from './main_component/main/main';
 import { Profile } from './main_component/profile/profile';
+import { authGuardGuard } from './guards/auth-guard-guard';
 
 export const routes: Routes = [
     { path: '', component: Home, title: 'Layout Page' },
@@ -17,6 +18,7 @@ export const routes: Routes = [
     {
         path: 'dashboard',
         component: Layout,
+        canActivate: [authGuardGuard],
         children: [
             { path: '', component: Main, },
             { path: 'admins', component: Signup },
@@ -26,22 +28,31 @@ export const routes: Routes = [
     {
         path: 'profile',
         component: Layout,
+        canActivate:[authGuardGuard],
         children: [
             { path: '', component: Profile, },
+
+
         ]
     },
+    { path: 'contact', component: Layout, title: 'Contact Page',canActivate:[authGuardGuard], 
+        children:[
+            {path :'',component:Contact}
+        ]
+    },
+
 
     { path: 'dashboard', component: Layout, title: 'Sidebar Page' },
     { path: 'home', component: Home, title: 'Home Page' },
     { path: 'login', component: Login, title: 'Login Page' },
     { path: 'signup', component: Signup, title: 'Signup Page' },
-    { path: 'contact', component: Contact, title: 'Contact Page' },
     { path: 'about', component: About, title: 'About Page' },
 
     { path: '', redirectTo: 'login', pathMatch: 'full' },
 
-     { path: 'profile', component: Profile },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  
+
+    { path: '', redirectTo: 'login', pathMatch: 'full' }
 
 
     //    {path:'forgotPassword',component:ForgotPassword,title:'Password Reset Page'}
