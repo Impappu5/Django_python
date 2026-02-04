@@ -55,19 +55,11 @@ export class Login {
   }
 
 
-  forgotPassword() {
-    console.log('Forgot password clicked');
 
-  }
 
   // //////Go to signup link
 
-  goToSignup() {
-   this.router.navigate(['/register']);
-  }
-  //  goToRegister() {
-  //   
-  // }
+ 
 
 
 
