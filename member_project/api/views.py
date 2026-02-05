@@ -22,12 +22,6 @@ from rest_framework.permissions import IsAuthenticated
 
 from rest_framework.permissions import AllowAny
 
-###### password forgot 
-from django.core.mail import send_mail
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import smart_bytes, smart_str
-
 
 
 ###########Signup API #########
@@ -102,54 +96,6 @@ class LogoutAPI(APIView):
                 {"error": "Invalid refresh token"},
                 status=status.HTTP_400_BAD_REQUEST
             )
-
-class ForgotPasswordAPI(APIView):
-    permission_classes = [AllowAny]
-
-    def post(self, request):
-        email = request.data.get('email')
-
-        user = User.objects.filter(email=email).first()
-        if not user:
-            return Response(
-                {"error": "Email not found"},
-                status=status.HTTP_404_NOT_FOUND
-            )
-
-        uid = urlsafe_base64_encode(smart_bytes(user.id))
-        token = PasswordResetTokenGenerator().make_token(user)
-
-        link = f"http://localhost:4200/reset-password/{uid}/{token}"
-
-        send_mail(
-            "Reset Password",
-            f"Click this link:\n{link}",
-            None,
-            [email],
-        )
-
-        return Response({"message": "Reset link sent"})
-
-class ResetPasswordAPI(APIView):
-    permission_classes = [AllowAny]
-
-    def post(self, request):
-        password = request.data.get('password')
-        uidb64 = request.data.get('uidb64')
-        token = request.data.get('token')
-
-        uid = smart_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(id=uid)
-
-        if not PasswordResetTokenGenerator().check_token(user, token):
-            return Response({"error": "Invalid token"}, status=400)
-
-        user.set_password(password)
-        user.save()
-
-        return Response({"message": "Password changed successfully"})
-
-
 
 
 

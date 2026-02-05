@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../servicess/auth-service';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,29 +7,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './reset-password.html',
   styleUrl: './reset-password.css',
 })
-export class ResetPassword implements OnInit {
+export class ResetPassword  {
 
-  password = '';
-  uid!: string;
-  token!: string;
-
-  constructor(
-    private route: ActivatedRoute,
-    private authService: AuthService
-  ) {}
-
-  ngOnInit() {
-    this.uid = this.route.snapshot.params['uid'];
-    this.token = this.route.snapshot.params['token'];
-  }
-
-  reset() {
-    this.authService.resetPassword({
-      password: this.password,
-      uidb64: this.uid,
-      token: this.token
-    }).subscribe(() => {
-      alert('Password changed');
-    });
-  }
+ 
 }

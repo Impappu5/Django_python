@@ -168,7 +168,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 ###    Email forgot and reset password
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 

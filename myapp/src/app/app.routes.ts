@@ -12,8 +12,7 @@ import { Main } from './main_component/main/main';
 import { Profile } from './main_component/profile/profile';
 import { authGuardGuard } from './guards/auth-guard-guard';
 import { Unauthorized } from './main_component/unauthorized/unauthorized';
-import { ForgotPassword } from './main_component/forgot-password/forgot-password';
-import { ResetPassword } from './main_component/reset-password/reset-password';
+
 
 export const routes: Routes = [
     { path: '', component: Home, title: 'Home Page' },
@@ -45,8 +44,7 @@ export const routes: Routes = [
     { path: 'signup', component: Signup, title: 'Signup Page' },
     { path: 'about', component: About, title: 'About Page' },
     {path:'unauthorized',component:Unauthorized, title:'Unauthorized-page'},
-    {path:'forgot',component:ForgotPassword} ,
-    { path: 'reset/:uid/:token', component: ResetPassword },
+ 
 
 
     { path: '', redirectTo: 'unauthorized', pathMatch: 'full' },

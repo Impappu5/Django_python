@@ -57,14 +57,6 @@ export class AuthService {
   }
 
 
-  forgotPassword(email: string) {
-    return this.http.post(this.apiUrl + 'forgot/', { email });
-  }
-
-  resetPassword(data: any) {
-    return this.http.post(this.apiUrl + 'reset/', data);
-  }
-
 
 
   saveTokens(access: string, refresh: string) {
