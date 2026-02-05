@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -17,44 +17,40 @@
               <span class="bi bi-person-fill"></span>
               <input
                 type="text"
-                 formControlName="email"
-                id="email"              
+                formControlName="email"
+                id="email"
                 placeholder="Email"
                 class="form-control rounded-start-2 shadow-none"
               />
-              
             </div>
             <br />
             <div class="input-group d-flex align-items-center">
               <span class="bi bi-lock-fill"></span>
               <input
-        
                 type="password"
                 formControlName="password"
                 id="password"
                 placeholder="Password"
                 class="form-control rounded-start-2 shadow-none"
               />
-               @if (
-                form.controls['password'].errors?.['required'] &&
-                form.controls['password'].touched
+              @if (
+                form.controls['password'].errors?.['required'] && form.controls['password'].touched
               ) {
                 <span>*</span>
               }
             </div>
             <br /><br />
 
-            <button class="btn btn-primary fw-bold w-100" type="submit ">
-              LOGIN
-            </button>
+            <button class="btn btn-primary fw-bold w-100" type="submit ">LOGIN</button>
 
             <br /><br />
-            <a href="/forgot" >ForgotPassword</a>
+
+            <a href="#">ForgotPassword</a>
+
             <br /><br />
             <p class="text-center mt-3 mb-0">
               Don't have a account
-              <a href="/signup" >Register</a>
-             
+              <a href="/signup">Register</a>
             </p>
           </form>
         </div>
