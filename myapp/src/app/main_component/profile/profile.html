@@ -1,24 +1,61 @@
-
 <div class="container-fluid table-responsive">
-    <table class="table table-bordered table-striped table-hover">
-      <thead class="table-dark text-center">
-        <h3 class="heading">User Profile</h3>
-        <tr>
-          <th>User_ID</th>
-          <th>User-Name</th>
-          <th>User-Email</th>
-        </tr>
-      </thead>
 
-      <tbody class="text-center">
-        <tr *ngIf="user$ | async as user">
-          <td>{{ user.id }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-        </tr>
+  <h3 class="heading">User Profile</h3>
+  <p style="color:green">{{ message }}</p>
 
-      </tbody>
-    </table>
+  <!-- PROFILE TABLE -->
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>User Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody class="text-center">
+      <tr *ngIf="user$ | async as user">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button class="btn btn-primary"
+                  (click)="openEdit(user)">
+            Edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- EDIT FORM -->
+  <div *ngIf="editMode" class="card p-3 mt-3">
+    <h4>Edit Profile</h4>
+
+    <form (ngSubmit)="saveProfile()">
+
+      <label>User Name</label>
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="editUser.username"
+             name="username">
+
+      <label class="mt-2">New Password</label>
+      <input type="password"
+             class="form-control"
+             [(ngModel)]="editUser.password"
+             name="password">
+
+      <br>
+
+      <button class="btn btn-success" type="submit">Save</button>
+      <button class="btn btn-secondary ms-2"
+              type="button"
+              (click)="cancelEdit()">Cancel</button>
+    </form>
   </div>
+
+</div>
 
 

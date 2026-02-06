@@ -41,6 +41,21 @@ export class AuthService {
   }
 
 
+  updateProfile(data: any): Observable<any> {
+  const token = localStorage.getItem('access');
+
+  return this.http.put(
+    'http://127.0.0.1:8000/api/profile/',
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+}
+
+
   ////Logout part
   logout() {
     const refresh = localStorage.getItem('refresh');
@@ -78,6 +93,16 @@ export class AuthService {
 
   
 
+  }
+
+
+  
+  getAllUsers(): Observable<any> {
+    const token = localStorage.getItem('access');  // JWT access token
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.apiUrl}superuser/`, { headers });
   }
 
 

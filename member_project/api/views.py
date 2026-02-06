@@ -68,10 +68,27 @@ class UserProfile(APIView):
     def get(self, request):
         user = request.user
         return Response({"id": user.id, "username": user.username, "email": user.email})
-        return Response({
-        "id": user.id, 
-        "username": user.username,
-        "email": user.email})
+        # return Response({
+        # "id": user.id, 
+        # "username": user.username,
+        # "email": user.email})
+
+     ###✅ EDIT PROFILE
+    def put(self, request):
+        serializer = UserSerializer(
+            request.user,
+            data=request.data,
+            partial=True
+        )
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                {"message": "Profile updated successfully","user": serializer.data },
+                status=status.HTTP_200_OK
+            )
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)   
     
 
 
@@ -121,3 +138,15 @@ class ContactAPI(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
+from .permissions import IsSuperUser
+
+class SuperUserAllUsers(APIView):
+    """
+    Only superusers can view all users
+    """
+    permission_classes = [IsAuthenticated, IsSuperUser]
+
+    def get(self, request):
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)

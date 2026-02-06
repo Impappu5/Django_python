@@ -12,6 +12,7 @@ import { Main } from './main_component/main/main';
 import { Profile } from './main_component/profile/profile';
 import { authGuardGuard } from './guards/auth-guard-guard';
 import { Unauthorized } from './main_component/unauthorized/unauthorized';
+import { Admin } from './main_component/admin/admin';
 
 export const routes: Routes = [
     { path: '', component: Home, title: 'Home Page' },
@@ -29,24 +30,28 @@ export const routes: Routes = [
     {
         path: 'profile',
         component: Layout,
-        canActivate:[authGuardGuard],
+        canActivate: [authGuardGuard],
         children: [
             { path: '', component: Profile },
 
 
         ]
     },
-    { path: 'contact', component: Contact, title: 'Contact Page'},
+    {
+        path: 'superuser', component: Layout, canActivate: [authGuardGuard],
+        children: [{ path: '', component: Admin }]
+    },
+    { path: 'contact', component: Contact, title: 'Contact Page' },
     { path: 'dashboard', component: Layout, title: 'Sidebar Page' },
     { path: 'home', component: Home, title: 'Home Page' },
     { path: 'login', component: Login, title: 'Login Page' },
     { path: 'signup', component: Signup, title: 'Signup Page' },
     { path: 'about', component: About, title: 'About Page' },
-    {path:'unauthorized',component:Unauthorized, title:'Unauthorized-page'},
+    { path: 'unauthorized', component: Unauthorized, title: 'Unauthorized-page' },
 
     { path: '', redirectTo: 'unauthorized', pathMatch: 'full' },
 
-  
+
 
     // { path: '', redirectTo: 'unauthorized', pathMatch: 'full' }
 
