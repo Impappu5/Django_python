@@ -18,26 +18,42 @@ class MemberSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
 
     password = serializers.CharField(write_only=True)
 
     password = serializers.CharField(write_only=True)
+
+    password = serializers.CharField(write_only=True)
+
+    password = serializers.CharField(write_only=True, required=False)
+
 
     class Meta:
         model = User
-        fields = ["id", "username", "email", "password"]
+        fields = ["id", "username", "email", "password", "last_updated"]
+        read_only_fields = ["id", "email", "last_updated"]
 
     def create(self, validated_data):
         user = User.objects.create_user(
             username=validated_data["username"],
             email=validated_data["email"],
             password=validated_data["password"],
-          
         )
         user.is_active = True
 
         return user
+
+    # ✅ ADD THIS
+    def update(self, instance, validated_data):
+        instance.username = validated_data.get("username", instance.username)
+
+        password = validated_data.get("password")
+        if password:
+            instance.set_password(password)
+
+        
+        instance.save()  # ✅ last_updated automatically updates here
+        return instance
 
 
 #######  Contact Details ####

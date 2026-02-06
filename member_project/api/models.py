@@ -32,7 +32,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)  # ✅ Fix default
-    date_update = models.DateTimeField(default=timezone.now) 
+    last_updated = models.DateTimeField(auto_now=True)
+    # date_update = models.DateTimeField(default=timezone.now) 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
