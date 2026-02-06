@@ -48,13 +48,13 @@ export const routes: Routes = [
     { path: 'login', component: Login, title: 'Login Page' },
     { path: 'signup', component: Signup, title: 'Signup Page' },
     { path: 'about', component: About, title: 'About Page' },
-<<<<<<< HEAD
+
     {path:'unauthorized',component:Unauthorized, title:'Unauthorized-page'},
  
 
-=======
+
     { path: 'unauthorized', component: Unauthorized, title: 'Unauthorized-page' },
->>>>>>> feature1
+
 
     { path: '', redirectTo: 'unauthorized', pathMatch: 'full' },
 
