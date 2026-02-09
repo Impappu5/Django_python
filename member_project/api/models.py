@@ -29,7 +29,6 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)  # ✅ Fix default
@@ -44,8 +43,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-    # def __str__(self):
-    #         return self.email
     
 #########Contack Details 
 class ContactDetails(models.Model):
