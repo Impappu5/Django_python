@@ -21,9 +21,9 @@ class UserSerializer(serializers.ModelSerializer):
 
     password = serializers.CharField(write_only=True)
 
-    password = serializers.CharField(write_only=True)
+    # password = serializers.CharField(write_only=True)
 
-    password = serializers.CharField(write_only=True)
+    # password = serializers.CharField(write_only=True)
 
     password = serializers.CharField(write_only=True, required=False)
 
@@ -31,17 +31,18 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "username", "email", "password", "last_updated"]
-        read_only_fields = ["id", "email", "last_updated"]
+        read_only_fields = ["id",  "last_updated"]
 
     def create(self, validated_data):
         user = User.objects.create_user(
-            username=validated_data["username"],
-            email=validated_data["email"],
-            password=validated_data["password"],
+            username=validated_data.get("username"),
+            email=validated_data.get("email"),
+            password=validated_data.get("password"),
         )
         user.is_active = True
-
+        user.save()
         return user
+
 
     # ✅ ADD THIS
     def update(self, instance, validated_data):
