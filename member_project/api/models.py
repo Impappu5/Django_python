@@ -43,8 +43,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-    # def __str__(self):
-    #         return self.email
     
 #########Contack Details 
 class ContactDetails(models.Model):

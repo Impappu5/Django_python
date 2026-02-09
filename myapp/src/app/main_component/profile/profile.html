@@ -1,6 +1,6 @@
 <div class="container-fluid table-responsive">
 
-  <h3 class="heading">User Profile</h3>
+  <h3 class="heading text-center">User Profile</h3>
   <p style="color:green">{{ message }}</p>
 
   <!-- PROFILE TABLE -->
@@ -31,28 +31,26 @@
 
   <!-- EDIT FORM -->
   <div *ngIf="editMode" class="card p-3 mt-3">
-    <h4>Edit Profile</h4>
+    <h4 class="text-center">Edit Profile</h4>
 
     <form (ngSubmit)="saveProfile()">
 
-      <label>User Name</label>
+      <label class="ps-2">User Name</label>
       <input type="text"
              class="form-control"
              [(ngModel)]="editUser.username"
-             name="username">
+             name="username" placeholder="User-Name">
 
-      <label class="mt-2">New Password</label>
+      <label class="mt-2 ps-2">New Password</label>
       <input type="password"
              class="form-control"
              [(ngModel)]="editUser.password"
-             name="password">
+             name="password" placeholder=" New Password">
 
       <br>
 
       <button class="btn btn-success" type="submit">Save</button>
-      <button class="btn btn-secondary ms-2"
-              type="button"
-              (click)="cancelEdit()">Cancel</button>
+      <button class="btn btn-secondary ms-2"type="button" (click)="cancelEdit()">Cancel</button>
     </form>
   </div>
 

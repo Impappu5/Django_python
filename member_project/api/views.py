@@ -74,6 +74,7 @@ class UserProfile(APIView):
         "username": user.username,
         "email": user.email})
 
+
      ###✅ EDIT PROFILE
     def put(self, request):
         serializer = UserSerializer(
